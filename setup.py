@@ -1,8 +1,5 @@
 import setuptools
 
-found_packages = setuptools.find_packages(where="src")
-print("Found packages:", found_packages)
-
 with open("README.md", "r", encoding="utf-8") as f:
     long_description = f.read()
 
@@ -20,11 +17,12 @@ setuptools.setup(
     author_email=AUTHOR_EMAIL,
     description="A simple text summarizer",
     long_description=long_description,
-    long_description_content_type="text/markdown",  # corrected key name
+    long_description_content_type="text/markdown",  # Note the corrected key name
     url=f"https://github.com/{AUTHOR_USER_NAME}/{REPO_NAME}",
     project_urls={
         "Bug Tracker": f"https://github.com/{AUTHOR_USER_NAME}/{REPO_NAME}/issues",
     },
     package_dir={"": "src"},
-    packages=found_packages,
+    packages=setuptools.find_packages(where="src"),
+    options={"egg_info": {"egg_base": "."}},  # Force .egg-info at project root
 )
